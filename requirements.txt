@@ -1,6 +1,7 @@
 asgiref==3.2.10
 async-lru==1.0.2
 Django==3.1.1
+djangorestframework==3.11.1
 environs==8.0.0
 marshmallow==3.7.1
 psycopg2-binary==2.8.6
