@@ -11,17 +11,14 @@ from apps.core.models import Message
 @api_view(['POST'])
 @Request.post
 def create_message(request):
-    if request.method == 'POST':
-        try:
-            text = request.data['text']
-        except MultiValueDictKeyError:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+    try:
+        text = request.data['text']
+    except MultiValueDictKeyError:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
 
-        new_msg = Message.objects.create(
-            text=text
-        )
-        serializer = MessageSerializer(new_msg)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    new_message = Message.objects.create(text=text)
+    serializer = MessageSerializer(new_message)
+    return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 @api_view(['GET'])

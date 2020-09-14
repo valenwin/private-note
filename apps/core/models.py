@@ -35,6 +35,8 @@ class Message(models.Model):
 
         if not self.text:
             self.is_empty = True
+        else:
+            self.is_empty = False
 
         if self.is_viewed:
             return self.delete()
