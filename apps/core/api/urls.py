@@ -8,5 +8,10 @@ urlpatterns = [
         'get-message/<int:message_id>/<str:access_token>/',
         api_views.get_message,
         name='get-message'),
+    path(
+        'get_last_active_app_config/',
+        api_views.get_last_active_app_config,
+        name='get-last-active-app-config'
+    ),
 
 ]

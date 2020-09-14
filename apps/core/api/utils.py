@@ -22,3 +22,15 @@ class Request:
                 return Response(status=status.HTTP_400_BAD_REQUEST)
 
         return wrapper
+
+
+class Config:
+    @staticmethod
+    def get(func):
+        def wrapper(request, *args, **kwargs):
+            if request.method == 'POST':
+                return func(request, *args, **kwargs)
+            else:
+                return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        return wrapper

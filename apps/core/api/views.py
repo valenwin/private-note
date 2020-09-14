@@ -3,9 +3,21 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from apps.core.api.serializers import MessageSerializer
-from apps.core.api.utils import Request
-from apps.core.models import Message
+from apps.core.api.serializers import MessageSerializer, AppConfigSerializer
+from apps.core.api.utils import Request, Config
+from apps.core.models import Message, AppConfig
+
+
+@api_view(['GET'])
+@Config.get
+def get_last_active_app_config(request):
+    try:
+        config = AppConfig.objects.filter(is_active=True).last()
+    except AppConfig.DoesNotExist:
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    serializer = AppConfigSerializer(config)
+    return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 @api_view(['POST'])
