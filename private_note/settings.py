@@ -31,7 +31,8 @@ SECRET_KEY = env.str('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+DJANGO_SERVER_URL = 'http://172.25.0.2:8005/'
 
 
 # Application definition
